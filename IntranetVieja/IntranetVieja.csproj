@@ -1,0 +1,654 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8A5D1FC4-12DE-47FC-A1BA-665ED5AF5108}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IntranetVieja</RootNamespace>
+    <AssemblyName>IntranetVieja</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44330</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.94.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.8.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=4.8.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.4.8.0\lib\net47\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>lib\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Vbe.Interop, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>lib\Microsoft.Vbe.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=4.8.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.4.8.0\lib\net47\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="office, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>lib\office.dll</HintPath>
+    </Reference>
+    <Reference Include="Proser.Common">
+      <HintPath>lib\Proser.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Proser.Communications.Network">
+      <HintPath>lib\Proser.Communications.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Formats.Asn1, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Asn1.8.0.1\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".well-known\acme-challenge\vC_RtvoeMdaH9-TPDr7btBJRs6gPc7woKUIwQXLLTnM.txt" />
+    <Content Include="administracion\vehiculosAdmin.aspx" />
+    <Content Include="administracion\vehiculosVencimientos.aspx" />
+    <Content Include="App_Data\folder.xml" />
+    <Content Include="calidad\folder.xml" />
+    <Content Include="calidad\ncImprimir.aspx" />
+    <Content Include="calidad\propCambio.aspx" />
+    <Content Include="calidad\sgim.aspx" />
+    <Content Include="comercial\notifVentaAdmin.aspx" />
+    <Content Include="comercial\notifVentaLista.aspx" />
+    <Content Include="comercial\plantillas\NotifVenta.htm" />
+    <Content Include="comercial\plantillas\NotifVentaCliente.htm" />
+    <Content Include="comercial\plantillas\NotifVentaImputacion.htm" />
+    <Content Include="comercial\plantillas\NotifVentaRecordatorio.htm" />
+    <Content Include="css\all.css" />
+    <Content Include="css\all.min.css" />
+    <Content Include="css\autocomplete.css" />
+    <Content Include="css\brands.css" />
+    <Content Include="css\brands.min.css" />
+    <Content Include="css\datagrid.css" />
+    <Content Include="css\folder.xml" />
+    <Content Include="css\fontawesome.css" />
+    <Content Include="css\fontawesome.min.css" />
+    <Content Include="css\gs.css" />
+    <Content Include="css\impresion.css" />
+    <Content Include="css\jquery-ui.css" />
+    <Content Include="css\regular.css" />
+    <Content Include="css\regular.min.css" />
+    <Content Include="css\solid.css" />
+    <Content Include="css\solid.min.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\svg-with-js.css" />
+    <Content Include="css\svg-with-js.min.css" />
+    <Content Include="css\v4-shims.css" />
+    <Content Include="css\v4-shims.min.css" />
+    <Content Include="download.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="folder.xml" />
+    <Content Include="general\folder.xml" />
+    <Content Include="general\parteDiarioVer.aspx" />
+    <Content Include="general\partesDiariosPC.aspx" />
+    <Content Include="getImage.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="images\back_header.png" />
+    <Content Include="images\bg_mainmenu.png" />
+    <Content Include="images\diags\bulb.png" />
+    <Content Include="images\diags\close.png" />
+    <Content Include="images\diags\diag_header.png" />
+    <Content Include="images\diags\diag_header_cap_left.png" />
+    <Content Include="images\diags\diag_header_cap_right.png" />
+    <Content Include="images\diags\error.png" />
+    <Content Include="images\diags\error_small.png" />
+    <Content Include="images\diags\folder.xml" />
+    <Content Include="images\diags\info.png" />
+    <Content Include="images\diags\success.png" />
+    <Content Include="images\diags\success_small.png" />
+    <Content Include="images\diags\warning.png" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\folder.xml" />
+    <Content Include="images\forms\buttons_primary_action.png" />
+    <Content Include="images\forms\buttons_primary_action_cap.png" />
+    <Content Include="images\forms\buttons_primary_action_small.png" />
+    <Content Include="images\forms\buttons_primary_action_small_cap.png" />
+    <Content Include="images\forms\buttons_secondary_action.png" />
+    <Content Include="images\forms\buttons_secondary_action_cap.png" />
+    <Content Include="images\forms\buttons_secondary_action_small.png" />
+    <Content Include="images\forms\buttons_secondary_action_small_cap.png" />
+    <Content Include="images\forms\folder.xml" />
+    <Content Include="images\forms\form_inputwrapper_bg.png" />
+    <Content Include="images\forms\form_inputwrapper_cap.png" />
+    <Content Include="images\forms\form_selectbox_bg.png" />
+    <Content Include="images\forms\form_textarea_active_bg.png" />
+    <Content Include="images\forms\form_textarea_active_cap.png" />
+    <Content Include="images\forms\form_textarea_disabled_bg.png" />
+    <Content Include="images\forms\form_textarea_disabled_cap.png" />
+    <Content Include="images\forms\form_textarea_error_bg.png" />
+    <Content Include="images\forms\form_textarea_error_cap.png" />
+    <Content Include="images\forms\form_textarea_normal_bg.png" />
+    <Content Include="images\forms\form_textarea_normal_cap.png" />
+    <Content Include="images\forms\icon_add.png" />
+    <Content Include="images\forms\icon_cancel.png" />
+    <Content Include="images\forms\required.png" />
+    <Content Include="images\forms\step_arrow.png" />
+    <Content Include="images\forms\tagsbg.png" />
+    <Content Include="images\gs\cristian_o.png" />
+    <Content Include="images\gs\german_i.png" />
+    <Content Include="images\gs\luis_b.png" />
+    <Content Include="images\gs\mariana_d.png" />
+    <Content Include="images\gs\martín_d.png" />
+    <Content Include="images\gs\paula_d.png" />
+    <Content Include="images\gs\silvia_r.png" />
+    <Content Include="images\icono_intranet.ico" />
+    <Content Include="images\icons\bullet_green.png" />
+    <Content Include="images\icons\bullet_green_clav.png" />
+    <Content Include="images\icons\bullet_green_clav_.png" />
+    <Content Include="images\icons\bullet_red.png" />
+    <Content Include="images\icons\bullet_white.png" />
+    <Content Include="images\icons\bullet_yellow.png" />
+    <Content Include="images\icons\first.gif" />
+    <Content Include="images\icons\folder.xml" />
+    <Content Include="images\icons\icon_add.gif" />
+    <Content Include="images\icons\icon_add.png" />
+    <Content Include="images\icons\icon_back.png" />
+    <Content Include="images\icons\icon_calendario.png" />
+    <Content Include="images\icons\icon_camera.png" />
+    <Content Include="images\icons\icon_car.png" />
+    <Content Include="images\icons\icon_delete.png" />
+    <Content Include="images\icons\icon_doc.png" />
+    <Content Include="images\icons\icon_edit.png" />
+    <Content Include="images\icons\icon_edit_2.gif" />
+    <Content Include="images\icons\icon_email.png" />
+    <Content Include="images\icons\icon_error.png" />
+    <Content Include="images\icons\icon_error_2.png" />
+    <Content Include="images\icons\icon_event.png" />
+    <Content Include="images\icons\icon_exe.png" />
+    <Content Include="images\icons\icon_folder.png" />
+    <Content Include="images\icons\icon_group.png" />
+    <Content Include="images\icons\icon_hammer.png" />
+    <Content Include="images\icons\icon_home.png" />
+    <Content Include="images\icons\icon_iso.png" />
+    <Content Include="images\icons\icon_jpg.png" />
+    <Content Include="images\icons\icon_na.png" />
+    <Content Include="images\icons\icon_ok.png" />
+    <Content Include="images\icons\icon_pdf.png" />
+    <Content Include="images\icons\icon_pencil.png" />
+    <Content Include="images\icons\icon_plus.png" />
+    <Content Include="images\icons\icon_printer.gif" />
+    <Content Include="images\icons\icon_refresh.png" />
+    <Content Include="images\icons\icon_remove.gif" />
+    <Content Include="images\icons\icon_star.png" />
+    <Content Include="images\icons\icon_txt.png" />
+    <Content Include="images\icons\icon_ver.png" />
+    <Content Include="images\icons\icon_warning.png" />
+    <Content Include="images\icons\icon_xls.png" />
+    <Content Include="images\icons\icon_zip.png" />
+    <Content Include="images\icons\last.gif" />
+    <Content Include="images\icons\load.gif" />
+    <Content Include="images\icons\nc_opt_n.png" />
+    <Content Include="images\icons\nc_opt_y.png" />
+    <Content Include="images\icons\next.gif" />
+    <Content Include="images\icons\prev.gif" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\logo_intranet_170x30.navi.png" />
+    <Content Include="images\logo_intranet_170x30.png" />
+    <Content Include="images\logo_intranet_medio.png" />
+    <Content Include="images\logo_servaind_nc.png" />
+    <Content Include="images\logo_servaind_sv - copia.jpg" />
+    <Content Include="images\logo_servaind_sv.jpg" />
+    <Content Include="images\MAPA_SGIM.png" />
+    <Content Include="images\mapa_sgime.png" />
+    <Content Include="images\partesDiarios\ausente.png" />
+    <Content Include="images\partesDiarios\casamiento.png" />
+    <Content Include="images\partesDiarios\esperando_autoriz.gif" />
+    <Content Include="images\partesDiarios\examen.png" />
+    <Content Include="images\partesDiarios\folder.xml" />
+    <Content Include="images\partesDiarios\franco.png" />
+    <Content Include="images\partesDiarios\modif_horario.png" />
+    <Content Include="images\partesDiarios\nacimiento.png" />
+    <Content Include="images\partesDiarios\presente.png" />
+    <Content Include="images\partesDiarios\sin_aviso.png" />
+    <Content Include="images\partesDiarios\sin_goce.png" />
+    <Content Include="images\partesDiarios\vacaciones.png" />
+    <Content Include="images\sgim\actuacion_derrames.png" />
+    <Content Include="images\sgim\administracion_finanzas..png" />
+    <Content Include="images\sgim\administracion_finanzas.png" />
+    <Content Include="images\sgim\certificaciones.png" />
+    <Content Include="images\sgim\compras.png" />
+    <Content Include="images\sgim\control_residuos.png" />
+    <Content Include="images\sgim\deposito.png" />
+    <Content Include="images\sgim\desarrollo.png" />
+    <Content Include="images\sgim\documentos_externos.png" />
+    <Content Include="images\sgim\emergencias_ambientales.png" />
+    <Content Include="images\sgim\equipo_proteccion_personal.png" />
+    <Content Include="images\sgim\informatica.png" />
+    <Content Include="images\sgim\ingenieria.png" />
+    <Content Include="images\sgim\investigacion_incidentes.png" />
+    <Content Include="images\sgim\lista_documentos_externos.png" />
+    <Content Include="images\sgim\mantenimiento.png" />
+    <Content Include="images\sgim\manual_empleado.png" />
+    <Content Include="images\sgim\manual_sgi.png" />
+    <Content Include="images\sgim\matriz.png" />
+    <Content Include="images\sgim\matriz_externo.png" />
+    <Content Include="images\sgim\matriz_interno.png" />
+    <Content Include="images\sgim\medioambiente.png" />
+    <Content Include="images\sgim\metrologia.png" />
+    <Content Include="images\sgim\normas.png" />
+    <Content Include="images\sgim\obras.png" />
+    <Content Include="images\sgim\organigrama.png" />
+    <Content Include="images\sgim\organigramas.png" />
+    <Content Include="images\sgim\plan_emergencias.png" />
+    <Content Include="images\sgim\politica_alcohol_drogas.png" />
+    <Content Include="images\sgim\politica_sgi.png" />
+    <Content Include="images\sgim\procedimientos_sgi.png" />
+    <Content Include="images\sgim\proyectos.png" />
+    <Content Include="images\sgim\registro_capacitacion.png" />
+    <Content Include="images\sgim\rrhh.png" />
+    <Content Include="images\sgim\rrhh2.png" />
+    <Content Include="images\sgim\seguridad_higiene.png" />
+    <Content Include="images\sgim\seguridad_salud_operaciones.png" />
+    <Content Include="images\sgim\Seh.png" />
+    <Content Include="images\sgim\SGI.png" />
+    <Content Include="images\sgim\ventas.png" />
+    <Content Include="images\tables\border_bg.png" />
+    <Content Include="images\tables\folder.xml" />
+    <Content Include="images\tables\left_top_corner.png" />
+    <Content Include="images\tables\right_top_corner.png" />
+    <Content Include="images\tables\row-sep-h.png" />
+    <Content Include="images\tables\row-sep.png" />
+    <Content Include="images\tables\top_border.png" />
+    <Content Include="images\ui-icons_222222_256x240.png" />
+    <Content Include="images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="images\ui-icons_454545_256x240.png" />
+    <Content Include="images\ui-icons_888888_256x240.png" />
+    <Content Include="images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="index.aspx" />
+    <Content Include="js\all.js" />
+    <Content Include="js\all.min.js" />
+    <Content Include="js\brands.js" />
+    <Content Include="js\brands.min.js" />
+    <Content Include="js\conflict-detection.js" />
+    <Content Include="js\conflict-detection.min.js" />
+    <Content Include="js\datagrid.js" />
+    <Content Include="js\date-es-AR.js" />
+    <Content Include="js\folder.xml" />
+    <Content Include="js\fontawesome.js" />
+    <Content Include="js\fontawesome.min.js" />
+    <Content Include="js\funciones.js" />
+    <Content Include="js\fx.shadow.js" />
+    <Content Include="js\highcharts.js" />
+    <Content Include="js\IE9.js" />
+    <Content Include="js\jquery-ui-timepicker-addon.js" />
+    <Content Include="js\jquery-ui.min.js" />
+    <Content Include="js\jquery.autocomplete.js" />
+    <Content Include="js\jquery.corners.js" />
+    <Content Include="js\jquery.datePicker.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\jquery.simplemodal.js" />
+    <Content Include="js\json2.js" />
+    <Content Include="js\pdfobject.js" />
+    <Content Include="js\regular.js" />
+    <Content Include="js\regular.min.js" />
+    <Content Include="js\solid.js" />
+    <Content Include="js\solid.min.js" />
+    <Content Include="js\v4-shims.js" />
+    <Content Include="js\v4-shims.min.js" />
+    <Content Include="lib\ClosedXML.dll" />
+    <Content Include="lib\DocumentFormat.OpenXml.dll" />
+    <Content Include="lib\ExcelNumberFormat.dll" />
+    <Content Include="lib\FastMember.dll" />
+    <Content Include="lib\Microsoft.Office.Interop.Excel.dll" />
+    <Content Include="lib\Microsoft.Vbe.Interop.dll" />
+    <Content Include="lib\office.dll" />
+    <Content Include="login.aspx" />
+    <Content Include="logoff.aspx" />
+    <Content Include="Notas.txt" />
+    <Content Include="otros\gsAdmin.aspx" />
+    <Content Include="plantillas\AlertaInformacionObra.htm" />
+    <Content Include="plantillas\AlertaInstrumento.htm" />
+    <Content Include="plantillas\AlertaVencimiento.htm" />
+    <Content Include="plantillas\Autorizacion.htm" />
+    <Content Include="plantillas\CodificacionArticulo.htm" />
+    <Content Include="plantillas\folder.xml" />
+    <Content Include="plantillas\InformacionObraEmail.htm" />
+    <Content Include="plantillas\Licencia.htm" />
+    <Content Include="plantillas\NoConformidad.htm" />
+    <Content Include="plantillas\NotifVenta.htm" />
+    <Content Include="plantillas\NotifVentaCliente.htm" />
+    <Content Include="plantillas\NotifVentaImputacion.htm" />
+    <Content Include="plantillas\NotifVentaRecordatorio.htm" />
+    <Content Include="plantillas\PropCambio.htm" />
+    <Content Include="plantillas\RecordatorioEvento.htm" />
+    <Content Include="plantillas\RecordatorioParteDiario.htm" />
+    <Content Include="plantillas\SolicitudViaje.htm" />
+    <Content Include="plantillas\ValeDeMateriales.htm" />
+    <Content Include="public\folder.xml" />
+    <Content Include="public\IntranetServaind.asmx" />
+    <Content Include="reconnect.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="administracion\vehiculosAdmin.aspx.cs">
+      <DependentUpon>vehiculosAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administracion\vehiculosVencimientos.aspx.cs">
+      <DependentUpon>vehiculosVencimientos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="calidad\ncImprimir.aspx.cs">
+      <DependentUpon>ncImprimir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="calidad\propCambio.aspx.cs">
+      <DependentUpon>propCambio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="calidad\sgim.aspx.cs">
+      <DependentUpon>sgim.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Classes\AsistenciaFac.cs" />
+    <Compile Include="Classes\AsistenciaPanelControlFac.cs" />
+    <Compile Include="Classes\Autorizaciones.cs" />
+    <Compile Include="Classes\BaseFac.cs" />
+    <Compile Include="Classes\CodificacionArticulos.cs" />
+    <Compile Include="Classes\Configuracion.cs" />
+    <Compile Include="Classes\Constantes.cs" />
+    <Compile Include="Classes\DataAccess.cs" />
+    <Compile Include="Classes\Email.cs" />
+    <Compile Include="Classes\EmailHelper.cs" />
+    <Compile Include="Classes\Encriptacion.cs" />
+    <Compile Include="Classes\EnumExtensions.cs" />
+    <Compile Include="Classes\Enums.cs" />
+    <Compile Include="Classes\Error.cs" />
+    <Compile Include="Classes\Excepciones.cs" />
+    <Compile Include="Classes\ExtensionMethods.cs" />
+    <Compile Include="Classes\Filtro.cs" />
+    <Compile Include="Classes\Funciones.cs" />
+    <Compile Include="Classes\GAreas.cs" />
+    <Compile Include="Classes\GArticuloTango.cs" />
+    <Compile Include="Classes\GCookies.cs" />
+    <Compile Include="Classes\GCotizaciones.cs" />
+    <Compile Include="Classes\GHerramientas.cs" />
+    <Compile Include="Classes\GImputaciones.cs" />
+    <Compile Include="Classes\GImputacionParteDiario.cs" />
+    <Compile Include="Classes\GLicencias.cs" />
+    <Compile Include="Classes\GNoConformidades.cs" />
+    <Compile Include="Classes\GPanelesControlPD.cs" />
+    <Compile Include="Classes\GPartesDiarios.cs" />
+    <Compile Include="Classes\GPermisosPersonal.cs" />
+    <Compile Include="Classes\GPersonal.cs" />
+    <Compile Include="Classes\GPersonasIntervienen.cs" />
+    <Compile Include="Classes\GProductos.cs" />
+    <Compile Include="Classes\GranServaind.cs" />
+    <Compile Include="Classes\GRepositorioArchivos.cs" />
+    <Compile Include="Classes\GSecciones.cs" />
+    <Compile Include="Classes\GSessions.cs" />
+    <Compile Include="Classes\GSolEnvMat.cs" />
+    <Compile Include="Classes\GSolicitudesViaje.cs" />
+    <Compile Include="Classes\GSSM.cs" />
+    <Compile Include="Classes\GValeMateriales.cs" />
+    <Compile Include="Classes\ImpersionateHelper.cs" />
+    <Compile Include="Classes\InformacionObras.cs" />
+    <Compile Include="Classes\Instrumentos.cs" />
+    <Compile Include="Classes\IntranetServaind.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\ITR.cs" />
+    <Compile Include="Classes\LegajoFac.cs" />
+    <Compile Include="Classes\ModuloStock.cs" />
+    <Compile Include="Classes\NotifVentas.cs" />
+    <Compile Include="Classes\PropCambioFac.cs" />
+    <Compile Include="Classes\Tango.cs" />
+    <Compile Include="Classes\TiposVehiculo.cs" />
+    <Compile Include="Classes\ValidacionUsuario.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Classes\Vehiculos.cs" />
+    <Compile Include="comercial\notifVentaAdmin.aspx.cs">
+      <DependentUpon>notifVentaAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comercial\notifVentaLista.aspx.cs">
+      <DependentUpon>notifVentaLista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="download.aspx.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="general\parteDiarioVer.aspx.cs">
+      <DependentUpon>parteDiarioVer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="general\partesDiariosPC.aspx.cs">
+      <DependentUpon>partesDiariosPC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="getImage.aspx.cs">
+      <DependentUpon>getImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logoff.aspx.cs">
+      <DependentUpon>logoff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainTemplate.master.cs">
+      <DependentUpon>MainTemplate.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="otros\gsAdmin.aspx.cs">
+      <DependentUpon>gsAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="reconnect.aspx.cs">
+      <DependentUpon>reconnect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Classes\NotifVentas.cs-Backup-25-01-23.bak" />
+    <Content Include="MainTemplate.master" />
+    <Content Include="css\style.css.old" />
+    <Content Include="general\parteDiarioAdmin.aspx.cs_bak" />
+    <Content Include="images\boton-sgi-2.psd" />
+    <Content Include="images\boton-sgi-3.psd" />
+    <Content Include="images\boton-sgi-4.psd" />
+    <Content Include="images\boton-sgi-5.psd" />
+    <Content Include="images\boton-sgi-6.psd" />
+    <Content Include="images\boton-sgi-7.psd" />
+    <Content Include="images\boton-sgi.psd" />
+    <Content Include="images\forms\buttons_primary_action.psd" />
+    <Content Include="images\forms\buttons_primary_action_small.psd" />
+    <Content Include="images\forms\buttons_secondary_action.psd" />
+    <Content Include="images\forms\buttons_secondary_action_small.psd" />
+    <Content Include="images\forms\required.psd" />
+    <Content Include="images\icon_text.psd" />
+    <Content Include="images\Mapa SGIM.psd" />
+    <Content Include="images\mapa_sgim.png1" />
+    <Content Include="less\brands.less" />
+    <Content Include="less\fontawesome.less" />
+    <Content Include="less\regular.less" />
+    <Content Include="less\solid.less" />
+    <Content Include="less\v4-shims.less" />
+    <Content Include="less\_animated.less" />
+    <Content Include="less\_bordered-pulled.less" />
+    <Content Include="less\_core.less" />
+    <Content Include="less\_fixed-width.less" />
+    <Content Include="less\_icons.less" />
+    <Content Include="less\_larger.less" />
+    <Content Include="less\_list.less" />
+    <Content Include="less\_mixins.less" />
+    <Content Include="less\_rotated-flipped.less" />
+    <Content Include="less\_screen-reader.less" />
+    <Content Include="less\_shims.less" />
+    <Content Include="less\_stacked.less" />
+    <Content Include="less\_variables.less" />
+    <Content Include="default.htlm" />
+    <Content Include="metadata\categories.yml" />
+    <Content Include="metadata\icons.json" />
+    <Content Include="metadata\icons.yml" />
+    <Content Include="metadata\shims.json" />
+    <Content Include="metadata\shims.yml" />
+    <Content Include="metadata\sponsors.yml" />
+    <Content Include="calidad\sgim.aspx.old" />
+    <Content Include="administracion\vehiculosAdmin.aspx.cs.old" />
+    <Content Include="administracion\vehiculosAdmin.aspx.old" />
+    <Content Include=".well-known\acme-challenge\769t9hFuKDt40QApoEuBUWuE5BDgl6g47UcBMV7dR5A" />
+    <Content Include=".well-known\acme-challenge\J8IhGrTpLbbLvz2zY3qWL4Ib-bKwtqbgCFKcfQayIaI" />
+    <Content Include=".well-known\acme-challenge\lVKkK5e_BbHVMAiWlffzxOD3nbU0yT9gbDDc-v6RBKg" />
+    <None Include="packages.config" />
+    <Content Include="plantillas\Cotizacion.xls" />
+    <Content Include="plantillas\ListadoVentas.xls" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63715</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44330/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

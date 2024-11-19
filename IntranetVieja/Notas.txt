@@ -1,0 +1,98 @@
+﻿[27/06/2011]
+-En las solicitudes de viaje, si se selecciona Flete como vehículo, se debe ingresar una descripción en observaciones. [OK->28/06/2011]
+-En las solicitudes de alta de artículos, seleccionar UNI como unidad por defecto y verificar que el código sugerido no
+ exista en el sistema. [OK->28/06/2011]
+
+[23/06/2011]
+-En el listado de herramientas, encriptar el manejo de IDs de las herramientas (Eventos, Históricos).
+
+[01/06/2011]
+-Cuando el que genera alguna solicitud es un jefe, evitar el paso de enviar un email de auto-autorización.
+
+[31/05/2011]
+-Habría que modificar la bd del personal, ya que hay personas que no tienen cuenta de mail @servaind. [OK->01/06/2011]
+
+[27/05/2011]
+-Las solicitudes de vales de materiales se tienen que poder imprimir.
+
+[24/05/2011]
+-En IE las celdas que contienen elementos de filtro (posición absolute) no se muestran bien (en los casos que hay scroll del 
+ contenedor). Solucionado en IE 8 o superior. [OK->26/05/2011]
+
+[19/05/2011]
+-Agrupar los métodos de obtención de listas de cosas (herramientas, NCs, etc) ya que tienen una funcionalidad común. [OK->19/05/2011]
+-Revisar que las URLs que se envian a las casillas de email en las plantillas estén bien generadas. [OK->27/05/2011]
+
+[16/05/2011]
+-Encriptar los parámetros de las URLs. [OK->27/05/2011]
+-Reemplazar las constantes de mails en la clase Constantes por registros en la base de datos que puedan ser configurables.
+-Agregar los controles en la capa de negocios. [OK->13/05/2011]
+-Agregar ISNULL a las consultas en que los campos pueden almacenar valores NULL. [OK->17/05/2011]
+-No andan bien los filtros para las No Conformidades. [OK->19/05/2011]
+
+[12/05/2011]
+-Las filas de las tablas, en IE no se pintan en forma alternada (solucionado con script, pero cuando se hace una llamada ajax
+ y se actualiza la tabla, no se pintan de nuevo).
+-Agregar las comprobaciones de MaxLength a los campos de texto. [OK->27/05/2011]
+
+[11/05/2011]
+-stock/herramientasLista.aspx: la cantidad de registros históricos a mostrar por página debe ser de 5. [OK->12/05/2011]
+
+
+[FINAL]
+-Habilitar el bloque de alerta para navegadores < IE8. (MainTemplate.master línea 53).
+
+[PROGRESO]
+-Información Interna de Obras  [OK->17/06/2011]
+	/general/informacionObraAdmin.aspx
+	/general/informacionObraLista.aspx
+
+-Administración de accesos [OK->10/06/2011]
+	/sistemas/personalAccesos.aspx
+
+-Administración de permisos [OK->10/06/2011]
+	/sistemas/personalPermisos.aspx
+
+-Repositorio de archivos [OK->09/06/2011]
+	/general/repositorioArchivos.aspx
+
+-Partes diarios [OK->06/06/2011]
+	/general/parteDiarioAdmin.aspx [OK->04/06/2011]
+	/general/partesDiariosPC.aspx
+
+-Detalle de asistencia [OK->06/06/2011]
+	/rrhh/detalleAsistencia.aspx
+
+-Licencias [OK->06/06/2011]
+	/rrhh/licAdmin.aspx
+	/rrhh/licLista.aspx [MEJORA]
+
+-Sistema de solicitudes de viaje [OK->01/06/2011]
+	/general/viajeAdmin.aspx [OK->31/05/2011]
+	/general/viajesLista.aspx
+	/general/viajeImprimir.aspx
+
+-Administración de personal [OK->30/05/2011]
+	/sistemas/personalLista.aspx
+
+-Gestión de imputaciones [OK->30/05/2011]
+	/sistemas/imputacionesLista.aspx
+
+-Cotizador [OK->26/05/2011]
+	/stock/cotizador.aspx
+
+-Sistema de vale de materiales. [OK->24/05/2011]
+	/stock/vdmAdmin.aspx
+	/stock/vdmLista.aspx
+
+-Sistema de alta de artículos [OK->19/05/2011]
+	/stock/altaArticuloAdmin.aspx
+	/stock/altaArticulosLista.aspx
+
+-Sistema de NC [OK->19/05/2011]
+	/calidad/ncAdmin.aspx [OK->17/05/2011]
+	/calidad/ncsLista.aspx [OK->19/05/2011]
+
+-Sistema de herramientas. [OK->12/05/2011]
+	/stock/herramientaAdmin.aspx
+	/stock/herramientasLista.aspx

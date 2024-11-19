@@ -1,0 +1,46 @@
+﻿.datagrid-container {clear:both;overflow:auto;width:100%;padding:2px;margin:0 auto;}
+.datagrid-container table {float: left;position:relative;}
+
+.datagrid.listado {width:95%;margin:0 auto;}
+.datagrid.full_width {width:100%;}
+
+.datagrid thead tr {position: relative;display: block;}
+.datagrid thead tr td, .datagrid tfoot tr td {color:#004987;height:35px;background:url(/images/tables/border_bg.png) repeat-x #abcfed;border-top:1px solid #74AFE0;border-bottom:1px solid #74AFE0;}
+.datagrid thead tr td {line-height:35px;font-size:12px;text-align:center;}
+.datagrid thead tr.filter_row td {height:25px;background:none;background-color:#DEEBEE;border-bottom:1px solid #74afe0;border-top:0px;padding:1px 2px 1px 2px;vertical-align:top;}
+
+.datagrid tfoot tr td {position:relative;border-top:1px solid #74afe0}
+
+.datagrid tbody td {position:relative;}
+.datagrid tbody .scrollable {z-index:2; display:block;height:300px;overflow-y:auto;overflow-x:hidden;width:100%;}
+.datagrid tbody .scrollable tr {background:url(/images/tables/row-sep.png) repeat-x #E9F8FF;}
+.datagrid tbody .scrollable tr:hover {background:url(/images/tables/row-sep-h.png) repeat-x;color:#FFF;}
+.datagrid tbody .scrollable tr.hand {cursor:pointer;}
+.datagrid tbody .scrollable tr td {color:#003A66;display:block;float:left;border:0;margin:0;padding:0;position:relative;height:35px;}
+.datagrid tbody .scrollable tr td.text {font-size:10px;line-height:35px;}
+.datagrid tbody .scrollable tr td.text span {margin-left:5px;}
+.datagrid tbody .scrollable tr td.text.number {text-align:right;}
+.datagrid tbody .scrollable tr td.text.number span {margin-right:5px;}
+.datagrid tbody .scrollable tr td.text.number.last_column span {margin-right:20px;}
+.datagrid tbody .scrollable tr td.tag-container {padding:2px;}
+
+.datagrid tbody .gBlock {background: #FFF; position: absolute; z-index: 1;left:0px; top:0px;width:100%;height:300px; }
+
+.datagrid tbody .scrollable tr td.actions .bDiv {margin-left:8px;}
+
+.datagrid .bLoading {float:left;display:none;}
+
+.datagrid .border {border:1px solid #74afe0;}
+.datagrid .border_top {border-top:1px solid #74afe0;}
+.datagrid .border_left {border-left:1px solid #74afe0;}
+.datagrid .border_middle {border-left:1px solid #74afe0;border-right:1px solid #74afe0;}
+.datagrid .border_right {border-right:1px solid #74afe0;}
+
+.datagrid .border_t {border-color:transparent;}
+
+.datagrid .bControl.tag {border:1px solid; text-align:center;padding:2px;top:2px;}
+.datagrid .bControl.tag.red {border-color:#D8000C; color:#D8000C; background-color: #FFD9DA;}
+.datagrid .bControl.tag.green {border-color:#006B0E; color:#006B0E; background-color: #DFF2BF;}
+.datagrid .bControl.tag.blue {border-color:#004987; color: #004987; background-color: #CCECFF;}
+.datagrid .bControl.tag.yellow {border-color:#D74300; color: #D74300; background-color: #FFF7C2;}
+.datagrid .bControl.tag.disabled {border-color:transparent; color: #808080;background-color:transparent;}

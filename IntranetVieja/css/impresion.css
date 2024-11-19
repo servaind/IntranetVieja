@@ -1,0 +1,81 @@
+﻿/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	font:13px/1.24 Arial, Helvetica LT Std, Arial;
+	font-size:small;
+	font:x-small;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* Style 
+   ===========================================================================================*/
+body {font-family: Verdana, Geneva, Arial, helvetica, sans-serif; font-size:9pt;padding:3px;}
+
+.bordeCompleto {border:2px solid #000;}
+.bordeIntInf {border-bottom:2px solid #000;}
+.bordeIntSup {border-top:2px solid #000;}
+.logo {padding:10px 0 10px 5px}
+.titulo_container {width:100%; border-top:2px solid #000; border-bottom:2px solid #000; float:left; margin:6px 0 6px 0;}
+.titulo {border-top:1px solid #000; border-bottom:1px solid #000; margin:1px 0 1px 0; padding:3px; font-size:10pt; text-align:center;}
+.celda_100 {width:100%; float:left;}
+.celda_50 {width:49%; float:left;}
+.celda_65 {width:64%; float:left;}
+.celda_35 {width:34%; float:left;}
+.item {float:left; padding:6px 0 6px 4px;}
+.item_25 {width:25px;}
+.item_50 {width:50px;}
+.item_100 {width:100px;}
+.item_125 {width:125px;}
+.item_135 {width:135px;}
+.item_150 {width:150px;}
+.item_200 {width:200px;}
+.item_250 {width:250px;}
+.item_100p {width:100%;}
+.item_50p {width:49%;}
+.chkList li {width:100px; float:left; display:inline;}
+.chkList li.checked:before { color:#000; content: '[X] '; }
+.chkList li.unchecked:before { color:#000; content: '[ ] '; }
+.item.nivel_1 { text-indent:20px;}
+.center { text-align:center; }

@@ -1,0 +1,40 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        body {line-height: 1; font:13px/1.24 Arial, Helvetica LT Std, Arial; font-size:small; font:x-small;}
+        .info, .warning, .error, .success {border:1px solid; font-size:12px; position:relative; width:600px;}
+        .info .header, .warning .header, .error .header, .success .header {padding:15px 25px 15px 50px; background-repeat: no-repeat; background-position:10px center; word-wrap:break-word; line-height:22px;}
+        .success {color:#006B0E; border-color:#006B0E; background-color:#DFF2BF; }
+        .success .header{background-image:url('http://img.servaind.com/Sisser2.0/diags/success.png');}
+        .success .close {background-position:0 0;}
+        .info {color: #004987; border-color:#004987; background-color: #CCECFF;}
+        .info .header{background-image:url('http://img.servaind.com/Sisser2.0/diags/info.png');}
+        .info .close {background-position:0 -16px;}
+        .warning {color: #D74300; border-color: #D74300; background-color: #FFF7C2;}
+        .warning .header{background-image:url('http://img.servaind.com/Sisser2.0/diags/warning.png');}
+        .warning .close {background-position:0 -32px;}
+        .error {color: #D8000C; border-color: #D8000C; background-color: #FFD9DA;}
+        .error .header{background-image:url('http://img.servaind.com/Sisser2.0/diags/error.png');}
+        .error .close {background-position:0 -48px;}
+        .header{display:block;}
+        .footer{margin:10px 0 0 0; height:20px; padding:15px; border-top:1px dotted; display:block;}
+        .footer .button_list {float:right;}
+        .header .item {float:left; width:180px; margin-left:3px; font-weight:bold;}
+        .header .content {float:left;}
+        .header br {clear:both;}
+        a, a:visited {color:#FF0000; cursor:pointer; text-decoration:none; font-weight:bold;}
+        a:hover {text-decoration:underline;}
+    </style>
+</head>
+    <body style="padding:5px">
+        <p>Ha ingresado una nueva orden de compra y es necesario realizar el alta de la siguiente imputación:</p>
+        <div class="info">
+            <div class="header">
+                <span class="item">O/C: </span><span class="content">@OC</span><br />
+                <span class="item">Imputación: </span><span class="content">@IMPUTACION</span><br />
+            </div>
+        </div>
+        <p>Haga click <a href="@LINK">aqui</a> para acceder al detalle.</p>
+    </body>
+</html>
