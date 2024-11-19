@@ -1,134 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
-using System.Net;
-using System.Net.Mail;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MimeKit.Text;
+using Proser.Communications.Network.Mailing;
 
-public class AdjuntoEmail
-{
-    // Variables.
-    private string path;
-    private string nombre;
-
-    // Propiedades.
-    public string Path
-    {
-        get { return this.path; }
-    }
-    public string Nombre
-    {
-        get { return this.nombre; }
-    }
-
-
-    public AdjuntoEmail(string path, string nombre)
-    {
-        this.path = path;
-        this.nombre = nombre;
-    }
-}
-
-/// <summary>
-/// Descripción breve de Email
-/// </summary>
 public class Email
 {
-	//Variables privadas.
-	private string de;
-	private string para;
-	private string cc;
-	private string asunto;
-	private string cuerpo;
-	private bool formatoHTML;
-    private List<AdjuntoEmail> adjuntos;
-	private System.Net.NetworkCredential credenciales;
-	private Error _error = null;
+    //18/11/2024-AGM: Tomo los valores de configuracion para envio de mail del App.config
+    private static string DEFAULT_SERVER = ConfigurationManager.AppSettings["DEFAULT_SERVER"];
+    private static int DEFAULT_PORT = Convert.ToInt32(ConfigurationManager.AppSettings["DEFAULT_PORT"].ToString());
+    private static string DEFAULT_USER = ConfigurationManager.AppSettings["DEFAULT_USER"];
+    private static string DEFAULT_PWD = ConfigurationManager.AppSettings["DEFAULT_PWD"];
+    private static string DEFAULT_SENDER = ConfigurationManager.AppSettings["DEFAULT_SENDER"];
 
-	//Variables públicas.
-	/// <summary>
-	/// Obtiene o establece el remitente.
-	/// </summary>
-	public string De
-	{
-		get { return de; }
-		set { de = value; }
-	}
-	/// <summary>
-	/// Obtiene o establece el destinatario.
-	/// </summary>
-	public string Para
-	{
-		get { return para; }
-		set { para = value; }
-	}
-	/// <summary>
-	/// Obtiene o establece los destinatarios copia.
-	/// </summary>
-	public string CC
-	{
-		get { return cc; }
-		set { cc = value; }
-	}
-	/// <summary>
-	/// Obtiene o establece el asunto del mensaje.
-	/// </summary>
-	public string Asunto
-	{
-		get { return asunto; }
-		set { asunto = value; }
-	}
-	/// <summary>
-	/// Obtiene o establece el cuerpo del mensaje.
-	/// </summary>
-	public string Cuerpo
-	{
-		get { return cuerpo; }
-		set { cuerpo = value; }
-	}
-	/// <summary>
-	/// Obtiene o establece si el mensaje se enviará con formato HTML.
-	/// </summary>
-	public bool FormatoHTML
-	{
-		get { return formatoHTML; }
-		set { formatoHTML = value; }
-	}
-	/// <summary>
-	/// Obtiene o establece las credenciales para el envío del mensaje.
-	/// </summary>
-	public System.Net.NetworkCredential Credenciales
-	{
-		get { return credenciales; }
-		set { credenciales = value; }
-	}
-	/// <summary>
-	/// Obtiene los detalles del error.
-	/// </summary>
-	public Error Error
-	{
-		get
-		{
-			return _error;
-		}
-	}
-    public List<AdjuntoEmail> Adjuntos
+    private string de;
+    private string para;
+    private string cc;
+    private string asunto;
+    private string cuerpo;
+    private List<AdjuntoEmail> adjuntos;
+
+
+    public Email(string de, string para, string cc, string asunto, string cuerpo): this(de, para, cc, asunto, cuerpo, null)
     {
-        get { return this.adjuntos; }
-        set { this.adjuntos = value; }
     }
 
-
-	/// <summary>
-	/// Almacena un E-mail.
-	/// </summary>
-	public Email(string de, string para, string cc, string asunto, string cuerpo)
-        : this(de, para, cc, asunto, cuerpo, new List<AdjuntoEmail>())
-	{
-
-	}
-    /// <summary>
-    /// Almacena un E-mail.
-    /// </summary>
     public Email(string de, string para, string cc, string asunto, string cuerpo, List<AdjuntoEmail> adjuntos)
     {
         this.de = de;
@@ -136,62 +35,26 @@ public class Email
         this.cc = cc;
         this.asunto = asunto;
         this.cuerpo = cuerpo;
-        this.formatoHTML = true;
         this.adjuntos = adjuntos;
-        this.credenciales = new System.Net.NetworkCredential(Constantes.EmailUser,
-                Constantes.EmailPwd);
     }
-	/// <summary>
-	/// Envía el e-mail.
-	/// </summary>
-	/// <returns></returns>
-	public bool Enviar()
-	{	
-		MailMessage msg = new MailMessage();
-		SmtpClient smtp = new SmtpClient();
-		bool resultado;
-        
-		Funciones.Log("E-mail: [To]: |" + Para + "|");
-		
-		try
-		{
-            // [28/10/2014] - Parche para los emails de YPF.
-            if (De.Contains("@set.ypf.com")) De = De.Replace("@set.ypf.com", "@servaind.com");
-		
-			msg.From = new MailAddress(this.De);			
-			Funciones.Log("E-mail: [From]: |" + De + "|");			
-			msg.From = new MailAddress("intranet@servaind.com");
-			
-            string[] to = this.Para.Split(';');
-            if (to.Length > 0)
-            {
-                foreach (string recipient in to)
-                {
-					if(recipient.Trim().Length == 0) continue;
-                    msg.To.Add(recipient);
-                }
-            }
-            string[] cc = this.CC.Split(';');
-			if (this.cc.Trim().Length > 0)
-			{
-                foreach (string recipient in cc)
-                {
-					if(recipient.Trim().Length == 0) continue;
-                    msg.CC.Add(recipient);
-                }
-			}
-			msg.Subject = this.asunto;
-			msg.IsBodyHtml = formatoHTML;
-			msg.Body = this.cuerpo;
 
-            if (this.Adjuntos != null && this.Adjuntos.Count > 0)
+    public bool Enviar()
+    {
+        bool resultado;
+
+        try
+        {
+            List<Attachment> attachments = null;
+            if (adjuntos != null && adjuntos.Count > 0)
             {
-                foreach (AdjuntoEmail adjunto in this.Adjuntos)
+                attachments = new List<Attachment>();
+
+                foreach (AdjuntoEmail adjunto in adjuntos)
                 {
                     try
                     {
-                        StreamReader sr = new StreamReader(adjunto.Path);
-                        msg.Attachments.Add(new Attachment(sr.BaseStream, adjunto.Nombre));
+                        var attachment = new Attachment(File.ReadAllBytes(adjunto.Path), adjunto.Nombre);
+                        attachments.Add(attachment);
                     }
                     catch
                     {
@@ -200,20 +63,66 @@ public class Email
                 }
             }
 
-			smtp.Host = Constantes.EmailServer;
-			smtp.EnableSsl = true;
-			smtp.Credentials = this.credenciales;
-			ServicePointManager.ServerCertificateValidationCallback = (s, certificate, chain, sslPolicyErrors) => true;
-			smtp.Send(msg);
+            Send(DEFAULT_SENDER, para, cc, asunto, cuerpo, attachments);
+            resultado = true;
+        }
+        catch (Exception ex)
+        {
+            Funciones.Log("E-mail: " + ex.Message + " - " + ex.StackTrace + "//" + para + "//" + cc);
+            resultado = false;
+        }
 
-			resultado = true;
-		}
-		catch (Exception ex)
-		{
-			Funciones.Log("E-mail: " + ex.Message + " - " + ex.StackTrace + "//" + para + "//" + cc);
-			resultado = false;
-		}
+        return resultado;
+    }
 
-		return resultado;
-	}
+    // 18/11/2024-AGM: Reemplazo de uso proser.Communications por librería mailkit para envío de mails
+    public void Send(string from, string to, string cc, string subject, string contenido, 
+        List<Attachment> attachments = null)
+    {
+        try
+        {
+            var mensaje = new MimeMessage();
+            mensaje.From.Add(new MailboxAddress(from, from));
+            mensaje.To.Add(new MailboxAddress(to, to));
+            if (cc.Trim() != string.Empty)
+            {
+                mensaje.Cc.Add(new MailboxAddress(cc, cc));
+            }
+            mensaje.Subject = subject;
+            var body = new TextPart(TextFormat.Html)
+            {
+                Text = contenido
+            };
+
+            var multipart = new Multipart("mixed");
+            multipart.Add(body);
+
+            if (attachments != null)
+            {
+                foreach (var attachment in attachments)
+                {
+                    var mimePart = new MimePart("application", "octet-stream")
+                    {
+                        Content = new MimeContent(new MemoryStream(attachment.File), ContentEncoding.Default),
+                        ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
+                        ContentTransferEncoding = ContentEncoding.Base64,
+                        FileName = attachment.Name
+                    };
+                    multipart.Add(mimePart);
+                }
+            }
+
+            mensaje.Body = multipart;
+
+            var client = new SmtpClient();
+            client.Connect(DEFAULT_SERVER, DEFAULT_PORT, MailKit.Security.SecureSocketOptions.StartTls);
+            client.Authenticate(DEFAULT_USER, DEFAULT_PWD);
+            client.Send(mensaje);
+            client.Disconnect(true);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("No se pudo enviar el email. " + ex.Message);
+        }
+    }
 }

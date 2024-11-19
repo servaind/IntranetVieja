@@ -446,6 +446,7 @@
     <Compile Include="Classes\Configuracion.cs" />
     <Compile Include="Classes\Constantes.cs" />
     <Compile Include="Classes\DataAccess.cs" />
+    <Compile Include="Classes\_Email.cs" />
     <Compile Include="Classes\Email.cs" />
     <Compile Include="Classes\EmailHelper.cs" />
     <Compile Include="Classes\Encriptacion.cs" />

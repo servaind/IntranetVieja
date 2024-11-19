@@ -1129,20 +1129,21 @@ public static class NotifVentas
         plantCli = plantCli.Replace("@CLIENTE", notifVenta.Cliente);
         plantCli = plantCli.Replace("@LINK", link);
 
-        //email = new Email(Constantes.EmailIntranet, GPersonal.GetEmails(PermisosPersona.SNV_AltaCliente), "",
+        //string DEFAULT_SENDER = ConfigurationManager.AppSettings["DEFAULT_SENDER"].ToString();
+        //email = new Email(DEFAULT_SENDER, "mogel10@gmail.com", "",
         //                  "Alta de cliente para OC " + notifVenta.OC, plantCli);
+        ////email = new Email(Constantes.EmailIntranet, GPersonal.GetEmails(PermisosPersona.SNV_AltaCliente), "",
+        ////                  "Alta de cliente para OC " + notifVenta.OC, plantCli);
         //if (!email.Enviar()) throw new EmailException();
 
-        string DEFAULT_SENDER = ConfigurationManager.AppSettings["DEFAULT_SENDER"].ToString();
-
-        EmailHelper.Send(DEFAULT_SENDER, "mogel10@gmail.com", "", "Alta de cliente para OC " + notifVenta.OC, plantCli);
+        //EmailHelper.Send(DEFAULT_SENDER, "mogel10@gmail.com", "", "Alta de cliente para OC " + notifVenta.OC, plantCli);
 
         //////////////////////////////
 
 
         if (notifVenta == null) throw new EmailException();
 
-        link = Encriptacion.GetURLEncriptada("/comercial/notifVentaAdmin.aspx", "id=" + notifVentaID);
+        //var link = Encriptacion.GetURLEncriptada("/comercial/notifVentaAdmin.aspx", "id=" + notifVentaID);
 
         string montoOC = notifVenta.MontoOC != Constantes.ValorInvalido ? notifVenta.MontoOCToString() : "-";
 

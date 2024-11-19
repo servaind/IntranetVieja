@@ -122,7 +122,7 @@ using System.Web.UI.WebControls;
                 }
 
                 //var notifVenta = NotifVentas.GetNotifVenta(1);
-                NotifVentas.SendNotifVenta(6, "prueba");
+                //NotifVentas.SendNotifVenta(6, "prueba");
                 //SendNotifVenta
 
 
