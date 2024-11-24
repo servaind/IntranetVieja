@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Drawing;
 using ClosedXML.Excel;
-using System.Configuration;
+
 
 public class NotifVenta
 {
@@ -1119,31 +1119,9 @@ public static class NotifVentas
     {
         Email email;
         NotifVenta notifVenta = GetNotifVenta(notifVentaID);
-
-        ///////////////////////////////
-        string plantCli = Funciones.ObtenerPlantilla(EmailPlantilla.NVAltaCliente);
-        if (plantCli == null) throw new EmailException();
-
-        string link = Encriptacion.GetURLEncriptada("/comercial/notifVentaAdmin.aspx", "id=" + notifVentaID);
-        plantCli = plantCli.Replace("@OC", notifVenta.OC);
-        plantCli = plantCli.Replace("@CLIENTE", notifVenta.Cliente);
-        plantCli = plantCli.Replace("@LINK", link);
-
-        //string DEFAULT_SENDER = ConfigurationManager.AppSettings["DEFAULT_SENDER"].ToString();
-        //email = new Email(DEFAULT_SENDER, "mogel10@gmail.com", "",
-        //                  "Alta de cliente para OC " + notifVenta.OC, plantCli);
-        ////email = new Email(Constantes.EmailIntranet, GPersonal.GetEmails(PermisosPersona.SNV_AltaCliente), "",
-        ////                  "Alta de cliente para OC " + notifVenta.OC, plantCli);
-        //if (!email.Enviar()) throw new EmailException();
-
-        //EmailHelper.Send(DEFAULT_SENDER, "mogel10@gmail.com", "", "Alta de cliente para OC " + notifVenta.OC, plantCli);
-
-        //////////////////////////////
-
-
         if (notifVenta == null) throw new EmailException();
 
-        //var link = Encriptacion.GetURLEncriptada("/comercial/notifVentaAdmin.aspx", "id=" + notifVentaID);
+        string link = Encriptacion.GetURLEncriptada("/comercial/notifVentaAdmin.aspx", "id=" + notifVentaID);
 
         string montoOC = notifVenta.MontoOC != Constantes.ValorInvalido ? notifVenta.MontoOCToString() : "-";
 
@@ -1154,7 +1132,7 @@ public static class NotifVentas
                 if (notifVenta.TipoVenta != TipoNotifVenta.RemitoOficial &&
                     notifVenta.TipoVenta != TipoNotifVenta.RemitoInterno && !Tango.ExisteCliente(notifVenta.Cliente))
                 {
-                    plantCli = Funciones.ObtenerPlantilla(EmailPlantilla.NVAltaCliente);
+                    string plantCli = Funciones.ObtenerPlantilla(EmailPlantilla.NVAltaCliente);
                     if (plantCli == null) throw new EmailException();
 
                     plantCli = plantCli.Replace("@OC", notifVenta.OC);

@@ -12,10 +12,10 @@ public class Constantes
 {
     #region Constantes
     
-    public const bool TestMode = true;
+    public const bool TestMode = false;
     public const string DominioNombre = "DOMINIO";
     public const string DominioDC = "10.0.0.2";
-    public const string TestUsers = "eric.nielsen1|martin.duran|german.iglesias|spam";
+    public const string TestUsers = "martin.duran|german.iglesias|spam";
     public const string PublicUsers = "petrobras;planillas*2011";
     public const int ValorInvalido = -1;
     public const int IdPersonaAdmin = 89;

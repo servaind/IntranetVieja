@@ -203,9 +203,8 @@ public static class Funciones
 		switch(tipo)
 		{
 			case EmailPlantilla.NVAltaCliente:
-				//plantilla = ObtenerPlantilla(@"C:\Inetpub\wwwroot\intra.servaind.com\comercial\plantillas\NotifVentaCliente.htm");
-                plantilla = ObtenerPlantilla(@"C:\Desarrollo\Freelance\servaind\web\Intranet_Vieja\IntranetVieja\IntranetVieja\comercial\plantillas\NotifVentaCliente.htm");
-                break;
+				plantilla = ObtenerPlantilla(@"C:\Inetpub\wwwroot\intra.servaind.com\comercial\plantillas\NotifVentaCliente.htm");		
+			break;
 			
 			case EmailPlantilla.NVAltaImputacion:
 				plantilla = ObtenerPlantilla(@"C:\Inetpub\wwwroot\intra.servaind.com\comercial\plantillas\NotifVentaImputacion.htm");

@@ -49,8 +49,7 @@ public class DataSourceItem
 internal static class DataAccess
 {
     // Constantes.
-    private const string ConnectionStringIntranet = "server=AGM-XPS\\SQLEXPRESS2017;database=IntranetServaind;uid=sa;pwd=2234";
-    //private const string ConnectionStringIntranet = "server=10.0.0.15;database=IntranetServaind;uid=sa;pwd=orodis8siciliana$";
+    private const string ConnectionStringIntranet = "server=10.0.0.15;database=IntranetServaind;uid=sa;pwd=orodis8siciliana$";
     private const string ConnectionStringTango = "server=server-storage1\\axsqlexpress;database=Servaind_SA;"
                                                + "uid=sa;pwd=Axoft1988";
     private const string ConnectionStringProser = "server=localhost;uid=sa;pwd=orodis8siciliana$;database=Proser";

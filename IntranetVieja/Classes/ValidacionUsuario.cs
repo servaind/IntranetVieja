@@ -69,26 +69,26 @@ public class ValidacionUsuario : System.Web.UI.Page
 
         Constantes.EsUsuarioPublico = false;
 
-		//try
-		//{
-		//	// Fuerzo la autentificación.
-		//	object obj = entrada.NativeObject;
+		try
+		{
+			// Fuerzo la autentificación.
+			object obj = entrada.NativeObject;
 
-		//	DirectorySearcher search = new DirectorySearcher(entrada);
+			DirectorySearcher search = new DirectorySearcher(entrada);
 
-		//	search.Filter = "(SAMAccountName=" + usuario + ")";
-		//	search.PropertiesToLoad.Add("cn");
-		//	SearchResult result = search.FindOne();
+			search.Filter = "(SAMAccountName=" + usuario + ")";
+			search.PropertiesToLoad.Add("cn");
+			SearchResult result = search.FindOne();
 
-		//	if (null == result)
-		//	{
-		//		return false;
-		//	}
-		//}
-		//catch
-		//{
-		//	return false;
-		//}
+			if (null == result)
+			{
+				return false;
+			}
+		}
+		catch
+		{
+			return false;
+		}
 
 		return true;
 	}
