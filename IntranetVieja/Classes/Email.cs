@@ -83,11 +83,19 @@ public class Email
         {
             var mensaje = new MimeMessage();
             mensaje.From.Add(new MailboxAddress(from, from));
-            mensaje.To.Add(new MailboxAddress(to, to));
-            if (cc.Trim() != string.Empty)
+
+            var destinatarios = to.Split(';');
+            foreach (var destinatario in destinatarios)
             {
-                mensaje.Cc.Add(new MailboxAddress(cc, cc));
+                mensaje.To.Add(new MailboxAddress(destinatario, destinatario));
             }
+
+            var copias = cc.Split(';');
+            foreach (var copia in copias)
+            {
+                mensaje.Cc.Add(new MailboxAddress(copia, copia));
+            }
+
             mensaje.Subject = subject;
             var body = new TextPart(TextFormat.Html)
             {

@@ -443,6 +443,7 @@
       <DependentUpon>sgim.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Classes\AdjuntoEmail.cs" />
     <Compile Include="Classes\AsistenciaFac.cs" />
     <Compile Include="Classes\AsistenciaPanelControlFac.cs" />
     <Compile Include="Classes\Autorizaciones.cs" />
@@ -451,9 +452,7 @@
     <Compile Include="Classes\Configuracion.cs" />
     <Compile Include="Classes\Constantes.cs" />
     <Compile Include="Classes\DataAccess.cs" />
-    <Compile Include="Classes\_Email.cs" />
     <Compile Include="Classes\Email.cs" />
-    <Compile Include="Classes\EmailHelper.cs" />
     <Compile Include="Classes\Encriptacion.cs" />
     <Compile Include="Classes\EnumExtensions.cs" />
     <Compile Include="Classes\Enums.cs" />
@@ -635,7 +634,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63715</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44330/</IISUrl>
+          <IISUrl>http://localhost:44330/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
