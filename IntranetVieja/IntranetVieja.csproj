@@ -416,6 +416,7 @@
     <Content Include="plantillas\RecordatorioParteDiario.htm" />
     <Content Include="plantillas\SolicitudViaje.htm" />
     <Content Include="plantillas\ValeDeMateriales.htm" />
+    <Content Include="Properties\PublishProfiles\IntranetVieja.pubxml.user" />
     <Content Include="public\folder.xml" />
     <Content Include="public\IntranetServaind.asmx" />
     <Content Include="reconnect.aspx" />
@@ -608,6 +609,7 @@
     <None Include="packages.config" />
     <Content Include="plantillas\Cotizacion.xls" />
     <Content Include="plantillas\ListadoVentas.xls" />
+    <None Include="Properties\PublishProfiles\IntranetVieja.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
