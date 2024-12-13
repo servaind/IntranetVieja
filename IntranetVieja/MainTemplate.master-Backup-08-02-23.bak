@@ -1,0 +1,271 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MainTemplate.master.cs" Inherits="MainTemplate" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Servaind ::: Intranet</title>
+    <link href="/css/datagrid.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link href="/css/all.css" rel="stylesheet"/>
+    
+	<script language="javascript" src="/js/jquery.js" type="text/javascript"></script>
+    <script language="javascript" src="/js/jquery.simplemodal.js" type="text/javascript"></script>
+    <script language="javascript" src="/js/fx.shadow.js" type="text/javascript"></script>
+    <script language="javascript" src="/js/jquery.corners.js" type="text/javascript"></script>
+    <script language="javascript" src="/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script language="javascript" src="/js/date-es-AR.js" type="text/javascript"></script>
+    <script language="javascript" src="/js/funciones.js" type="text/javascript"></script>
+    <script language="javascript" src="/js/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+    <script language="javascript" src="/js/datagrid.js" type="text/javascript"></script>
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $('.messagebox').corner();
+            
+            EnlazarEventosMaster();
+
+            $('.messagebox .close').click(function () {
+                CerrarVentana();
+            });
+
+            $('#btnMainMenu').click(function () {
+                $('#mainmenucontent').slideToggle(150);
+
+                if ($(this).hasClass('selected')) {
+                    $('#btnMainMenu a').text('Mostrar menu');
+                    $(this).removeClass('selected');
+                }
+                else {
+                    $('#btnMainMenu a').text('Ocultar menu');
+                    $(this).addClass('selected');
+                }
+            });
+
+            $('#mainmenucontent').slideToggle(1);
+
+            $('select').change();
+
+            // Mantiene las sessions activas.
+            window.setInterval('KeepAlive()', 60000);
+
+            <% if (Request.Browser.Browser == "IE" && Request.Browser.MajorVersion < 8) { %>
+            Mensaje('Para la correcta visualización de esta página, se recomienda utilizar Internet Explorer 8 o superior.<br />Si está utilizando Internet Explorer 8 o superior, verifique que no tiene activada la función de "Vista de compatibilidad".', 'info', true, false, 'Aceptar', '', 'custom_dialog.close()', '');
+            <% } %>
+        });
+
+        var EnlazarEventosMaster = function () {
+            $('.input_wrapper input').focus(function () {
+                $(this).parents('.input_wrapper').addClass('input_wrapper_active');
+            }).blur(function () {
+                $(this).parents('.input_wrapper').removeClass('input_wrapper_active');
+            });
+            $('.hasActions').hover(function () {
+                $(this).children('.input_actions').show();
+            }, function () {
+                $(this).children('.input_actions').hide();
+            });
+            $('.input_actions').hover(function () {
+                $(this).show();
+            });
+            $('.textarea_wrapper textarea').focus(function () {
+                $(this).parents('.textarea_wrapper').addClass('textarea_wrapper_active');
+            }).blur(function () {
+                $(this).parents('.textarea_wrapper').removeClass('textarea_wrapper_active');
+            });
+            $('select').unbind('change').change(function () {
+                var current_value = $(this).val();
+
+                if (current_value != null) {
+                    var current_text = $('#' + $(this).attr('id') + ' option[value=' + current_value + ']').text();
+                    $(this).prev('span').text(current_text);
+                }
+            });
+            $('textarea').unbind('keyup').keyup(MaxLengthTextarea).unbind('change').change(MaxLengthTextarea);
+        }
+        
+        function MaxLengthTextarea() {
+                var lbl = $(this).prev('.max-length-status');
+                var max = $(this).attr('maxlength');
+
+                if (lbl.length && !isNaN(max)) {
+                    var l = $(this).val().length;
+                    
+                    if (l > max) lbl.addClass('error');
+                    else lbl.removeClass('error');
+
+                    lbl.text(l + '/' + max);
+                }
+        }
+
+        function Mensaje(message, mClass, showButtons, showSecondaryAction, textPrimaryAction, textSecondaryAction, primaryAction, secondaryAction) {
+            custom_dialog.show(mClass, message);
+            custom_dialog.buttons(showButtons, showSecondaryAction, textPrimaryAction, textSecondaryAction, primaryAction, secondaryAction);
+        }
+
+        function MostrarVentana(div) {
+            $.modal.close();
+
+            $('#' + div).modal({ opacity: 50, overlayCss: { backgroundColor: "#000" }, persist: true, escClose: false });
+        }
+
+        function CerrarVentana() {
+            $.modal.close();
+            custom_dialog.close();
+        }
+
+        var ult_ventana = null;
+        function ErrorMsg(mensaje) {
+            Mensaje(mensaje, 'error', true, false, 'Aceptar', '', 'OnErrorAceptar()', '');
+        }
+        function OnErrorAceptar() {
+            custom_dialog.close();
+
+            if (ult_ventana != null) {
+                MostrarVentana(ult_ventana);
+                ult_ventana = null;
+            }
+        }
+
+        function TieneDatos(campo, clase_padre, clase_error) {
+            var result = true;
+
+            if (jQuery.trim(campo.val()).length == 0) {
+                campo.parents('.' + clase_padre).addClass(clase_error);
+                result = false;
+            }
+            else {
+                campo.parents('.' + clase_padre).removeClass(clase_error);
+            }
+
+            return result;
+        }
+
+        function LimpiarCampo(campo, clase_padre) {
+            campo.val('');
+            QuitarEstilos(campo, clase_padre);
+        }
+
+        function QuitarEstilos(campo, clase_padre) {
+            campo.parents('.' + clase_padre).removeClass('input_wrapper_error').removeClass('input_wrapper_selectbox_error').removeClass('textarea_wrapper_error');
+        }
+
+        function ContieneFecha(campo, clase_padre, clase_error) {
+            var result = true;
+
+            if (jQuery.trim(campo.val()).length == 0 || isNaN(Date.parse(campo.val()))) {
+                campo.parents('.' + clase_padre).addClass(clase_error);
+                result = false;
+            }
+            else {
+                campo.parents('.' + clase_padre).removeClass(clase_error);
+            }
+
+            return result;
+        }
+
+        function ContieneNumeros(campo, clase_padre, clase_error) {
+            var result = true;
+
+            if (jQuery.trim(campo.val()).length == 0 || isNaN(campo.val())) {
+                campo.parents('.' + clase_padre).addClass(clase_error);
+                result = false;
+            }
+            else {
+                campo.parents('.' + clase_padre).removeClass(clase_error);
+            }
+
+            return result;
+        }
+
+        function ContieneValorDiferente(campo, valor, clase_padre, clase_error) {
+            var result = true;
+
+            if (jQuery.trim(campo.val()).length > 0 && campo.val() == valor) {
+                campo.parents('.' + clase_padre).addClass(clase_error);
+                result = false;
+            }
+            else {
+                campo.parents('.' + clase_padre).removeClass(clase_error);
+            }
+
+            return result;
+        }
+
+        function MostrarLoading() {
+            MostrarVentana('loading');
+        }
+
+        function KeepAlive() {
+            var img = new Image(1, 1);
+            img.src = '/reconnect.aspx';
+        }
+    </script>
+
+    <asp:ContentPlaceHolder id="contentPlaceHead" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <iframe id="reconnectFrame" src="/reconnect.aspx"></iframe>
+    <form id="form1" runat="server">
+    <div id="container">
+        <div id="wrapper">
+            <div id="header">
+                <div id="logo">
+                    <img src="/images/logo_intranet_170x30.png" title="Servaind :: Intranet" />
+                </div>
+                <div id="mainmenu">
+                    <ul>
+                        <li id="btnMainMenu"><a href="#">Mostrar menu</a></li>
+                    </ul>
+                </div>
+                <% if(Constantes.Usuario != null) { %>
+                <div id="user-info">
+                    <span id="user-name"><%= Constantes.Usuario.Nombre %></span> | <a href="/logoff.aspx" id="logoff">cerrar sesión</a>
+                </div>
+                <% } %>
+            </div>
+            <% List<Seccion> secciones = GSecciones.GetSeccionesPersona();
+               int cant_secciones = secciones.Count + 1;
+               int cant_filas = cant_secciones / 4;
+               if (cant_secciones - cant_filas * 4 > 0)
+               {
+                   cant_filas++;
+               }
+               int altura_menu = cant_filas * 31;
+            %>
+            <div id="mainmenucontent" style="height:<%= altura_menu %>px">
+                <ul>
+                    <%
+                       foreach (Seccion seccion in secciones)
+                       {
+                           %>
+                           <li><a href="/<%= seccion.URL %>"><%= seccion.Descripcion%></a></li>
+                           <%
+                       }
+                     %>
+                     <li><a href="https://mail.servaind.com/owa">Webmail</a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <asp:ContentPlaceHolder id="contentPlacePage" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="footer">
+                Sistemas Internos - © 2013 Servaind S.A. 
+            </div>
+        </div>
+    </div>
+    </form>
+
+    <div id="main_messagebox"></div>
+
+    <div id="loading">
+
+    </div>
+
+    <iframe id="frameAux" frameborder="0" width="0" height="0" />
+</body>
+</html>

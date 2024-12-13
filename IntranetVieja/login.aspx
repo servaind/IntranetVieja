@@ -156,7 +156,7 @@
                     </div>
                 </li>
                 <li class="form_floated_item normal">
-                    <input id="chkRecordar" runat="server" type="checkbox" checked="checked"/><label class="checkboxlabel" for="chkRecordar">Recordar</label>
+                    <input id="chkRecordar" runat="server" type="checkbox" runat="server" checked="checked"/><label class="checkboxlabel" for="chkRecordar">Recordar</label>
                 </li>
             </ul>
         </div>

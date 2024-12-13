@@ -81,32 +81,13 @@ public class Email
     {
         try
         {
-            to = to.Replace(",", ";");
-            cc = cc.Replace(",", ";");
             var mensaje = new MimeMessage();
-            Funciones.Log("E-mail: [From]: |" + from + "|");
             mensaje.From.Add(new MailboxAddress(from, from));
-
-            var destinatarios = to.Split(';');
-            foreach (var destinatario in destinatarios)
+            mensaje.To.Add(new MailboxAddress(to, to));
+            if (cc.Trim() != string.Empty)
             {
-                if (destinatario.Trim() != string.Empty)
-                {
-                    Funciones.Log("E-mail: [To]: |" + destinatario.Trim() + "|");
-                    mensaje.To.Add(new MailboxAddress(destinatario.Trim(), destinatario.Trim()));
-                }
+                mensaje.Cc.Add(new MailboxAddress(cc, cc));
             }
-
-            var copias = cc.Split(';');
-            foreach (var copia in copias)
-            {
-                if (copia.Trim() != string.Empty)
-                {
-                    Funciones.Log("E-mail: [CC]: |" + copia.Trim() + "|");
-                    mensaje.Cc.Add(new MailboxAddress(copia.Trim(), copia.Trim()));
-                }
-            }
-
             mensaje.Subject = subject;
             var body = new TextPart(TextFormat.Html)
             {
@@ -141,8 +122,6 @@ public class Email
         }
         catch (Exception ex)
         {
-            Funciones.Log("E-mail: " + ex.Message + " - " + ex.StackTrace + "//From: " + from + "//To: " + to + "// Cc:" + cc + "// Asunto: " + 
-                asunto + "// " + cuerpo + "// Hay adjuntos: " + (attachments != null ? "Si => " + attachments.Count.ToString() : "No")); 
             throw new Exception("No se pudo enviar el email. " + ex.Message);
         }
     }
